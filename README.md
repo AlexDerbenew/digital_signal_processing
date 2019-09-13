@@ -4,3 +4,6 @@
 # Зависимости
 Для сборки проектов перед использованием Code::Blocks IDE лучше всего будет установить последнюю версию MinGW (https://sourceforge.net/projects/mingw/).
 При установке выбираем mingw32-base, mingw32-gcc-g++, msys-base и устанавливаем в C:\MinGW\ (путь по умолчанию)
+
+# Используемые репозитории
+https://github.com/jarro2783/cxxopts - опции для командной строки
