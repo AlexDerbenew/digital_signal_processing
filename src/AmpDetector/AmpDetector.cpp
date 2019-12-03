@@ -4,19 +4,14 @@
 
 using namespace std;
 
-class AmpDetector{
-private:
-    GRAPH _points;
-    float energy(){
-        double W = 0.0;
-        for( unsigned int i = 0; i < this->_points.size(); i++ ){
-            W += this->_points[i].value * this->_points[i].value * 2 * ( M_PI / this->_points.size() );
-        }
-        return W;
+float AmpDetector::energy(){
+    double W = 0.0;
+    for( unsigned int i = 0; i < this->_points.size(); i++ ){
+        W += this->_points[i].y * this->_points[i].y * 2 * ( M_PI / this->_points.size() );
     }
-public:
-    explicit AmpDetector(GRAPH points) : _points(points){}
-    double countAmp(){
-        return sqrt(  energy() / M_PI );
-    }
-};
+    return W;
+}
+
+double AmpDetector::countAmp(){
+    return sqrt(  energy() / M_PI );
+}

@@ -5,6 +5,7 @@
 #include "cxxopts.hpp"
 #include "Generator/FunctionParameters.hpp"
 #include "Generator/Generator.hpp"
+#include "AmpDetector/AmpDetector.hpp"
 
 using namespace std;
 
