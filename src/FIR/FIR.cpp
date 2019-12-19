@@ -2,14 +2,14 @@
 // Created by inverse on 19.12.2019.
 //
 
-#include "../../include/KFilter/KFilter.h"
+#include "../../include/FIR/FIR.h"
 #include <iostream>
 
-KFilter::KFilter(GRAPH points) {
+FIR::FIR(GRAPH points) {
     _filtered = points;
 }
 
-void KFilter::exec() {
+void FIR::exec() {
     double average;
     int wSize = _filtered.size() - _size;
     for(int i=0;i<wSize;i++) {
@@ -22,7 +22,11 @@ void KFilter::exec() {
     }
 }
 
-void KFilter::setCoeff() {
+void FIR::setSize(int size) {
+    _size = size;
+}
+
+void FIR::setCoeff() {
     coef = new double[30];
     coef[0] = -1.117e-03;
     coef[1] = -3.755e-03;
@@ -56,6 +60,3 @@ void KFilter::setCoeff() {
     coef[29] = -1.117e-03;
 }
 
-void KFilter::setSize(int size) {
-    _size = size;
-}

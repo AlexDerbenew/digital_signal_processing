@@ -12,7 +12,8 @@ FloatingAverage::~FloatingAverage() {
 
 }
 
-void FloatingAverage::getMA(double **x, int n, int size) {
+//реализация из интернета, особо не нужна, но пусть будет
+/*void FloatingAverage::getMA(double **x, int n, int size) {
 // Вычисление результата скользящего среднего
     // size - количество отсчетов интервала усреднения
     double d = 0; // сумма отсчетов на интервале
@@ -29,7 +30,7 @@ void FloatingAverage::getMA(double **x, int n, int size) {
             index = 0; // возврат к началу "окна"
         x[2][i] = d / size;
     }
-}
+}*/
 
 void FloatingAverage::setWindowSize(int ws) {
     _windowSize = ws;

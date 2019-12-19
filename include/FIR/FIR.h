@@ -2,14 +2,14 @@
 // Created by inverse on 19.12.2019.
 //
 
-#ifndef DSP_KFILTER_H
-#define DSP_KFILTER_H
+#ifndef DSP_FIR_H
+#define DSP_FIR_H
 
 #include "../graph.hpp"
 
-class KFilter {
+class FIR {
 public:
-    KFilter(GRAPH points);
+    FIR(GRAPH points);
     void setCoeff();
     void setSize(int size);
     void exec();
