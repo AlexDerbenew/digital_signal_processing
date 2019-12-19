@@ -14,12 +14,16 @@ set(INCLUDES
         include/Generator/FunctionParameters.hpp
         include/Generator/Generator.hpp
         include/cxxopts.hpp
-        include/graph.hpp
-        include/point.hpp include/FloatingAverage/FloatingAverage.h include/KFilter/KFilter.h)
+        include/plot.hpp
+        include/point.hpp
+        include/FloatingAverage/FloatingAverage.h
+        include/KFilter/KFilter.h)
 
 set(SOURCES
         main.cpp
         src/AmpDetector/AmpDetector.cpp
-        src/Generator/Generator.cpp src/FloatingAverage/FloatingAverage.cpp src/KFilter/KFilter.cpp)
+        src/Generator/Generator.cpp
+        src/FloatingAverage/FloatingAverage.cpp
+        src/KFilter/KFilter.cpp)
 
 add_executable(dsp ${INCLUDES} ${SOURCES})
