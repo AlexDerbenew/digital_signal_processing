@@ -3,9 +3,9 @@
 
 #include <cmath>
 
-#include "point.hpp"
-#include "graph.hpp"
-#include "Generator/FunctionParameters.hpp"
+#include "../point.hpp"
+#include "../graph.hpp"
+#include "FunctionParameters.hpp"
 
 using namespace std;
 
