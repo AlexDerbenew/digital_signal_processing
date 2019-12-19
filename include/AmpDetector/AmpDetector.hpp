@@ -1,8 +1,8 @@
 #ifndef AMPDETECTOR_HPP_INCLUDED
 #define AMPDETECTOR_HPP_INCLUDED
 
-#include "point.hpp"
-#include "graph.hpp"
+#include "../point.hpp"
+#include "../graph.hpp"
 
 using namespace std;
 

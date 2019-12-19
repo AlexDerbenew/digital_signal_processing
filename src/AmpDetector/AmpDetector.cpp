@@ -1,6 +1,5 @@
 #include <cmath>
-
-#include "AmpDetector/AmpDetector.hpp"
+#include "../../include/AmpDetector/AmpDetector.hpp"
 
 using namespace std;
 

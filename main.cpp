@@ -1,11 +1,13 @@
 #include <iostream>
+#include <fstream>
 
-#include "point.hpp"
-#include "graph.hpp"
+#include "include/point.hpp"
+#include "include/graph.hpp"
 #include "cxxopts.hpp"
-#include "Generator/FunctionParameters.hpp"
-#include "Generator/Generator.hpp"
-#include "AmpDetector/AmpDetector.hpp"
+#include "include/Generator/FunctionParameters.hpp"
+#include "include/Generator/Generator.hpp"
+#include "include/AmpDetector/AmpDetector.hpp"
+#include "include/FloatingAverage/FloatingAverage.h"
 
 using namespace std;
 
@@ -18,7 +20,7 @@ auto parseOptions(int argc, char* argv[]){
         ("p,phase", "Phase", cxxopts::value<double>()->default_value("0.0"))
         ("f,frequency", "Frequency", cxxopts::value<double>()->default_value("1.0"))
         ("s,sampling_frequency", "Sampling frequency", cxxopts::value<double>()->default_value("250.0"))
-        ("t,observation_time", "Observation time", cxxopts::value<double>()->default_value("2.5"));
+        ("t,observation_time", "Observation time", cxxopts::value<double>()->default_value("4.0"));
 
     auto parsedOptions = options.parse(argc, argv);
 
@@ -36,11 +38,25 @@ auto parseOptions(int argc, char* argv[]){
 int main(int argc, char* argv[])
 {
     parseOptions(argc, argv);
+    fstream floating1;
 
     GRAPH points;
-
     Generator generator(parameters);
     points = generator.generateValues();
+
+/*    for(auto i = 0;i<points.size();i++) {
+        cout << "gen" << points[i].y << endl;
+    }*/
+    auto floating = new FloatingAverage(points);
+    floating->setWindowSize(10);
+    floating->exec();
+    points = floating->getPoints();
+
+    floating1.open("floating.txt", ios::out);
+    for(auto i = 0;i<points.size();i++) {
+        floating1 << points[i].y << endl;
+    }
+    floating1.close();
 
     AmpDetector detector(points);
 
