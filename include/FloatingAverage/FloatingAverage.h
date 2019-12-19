@@ -13,7 +13,6 @@ public:
     FloatingAverage(GRAPH points);
     ~FloatingAverage();
     void setWindowSize(int ws);
-    void getMA(double **x, int n, int size);
     void exec();
     GRAPH getPoints() { return _points;}
 private:

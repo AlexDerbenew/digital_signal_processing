@@ -6,24 +6,48 @@
 #include <iostream>
 
 FIR::FIR(GRAPH points) {
-    _filtered = points;
+    _source = points;
+    this->setCoeff();
 }
 
 void FIR::exec() {
     double average;
-    int wSize = _filtered.size() - _size;
-    for(int i=0;i<wSize;i++) {
+    for(int i=0;i<_source.size();i++) {
         average = 0.0;
-        for(int j=0;j<_size;j++)
+        for(int j=0;j<_windowSize;j++)
         {
-            average = coef[j]*(j);
+            average += coef[j]*(_source[i+j].y);
         }
-
+        _source[i].y = average;
     }
 }
 
+
+
+/*
+void TAwesomeFiltr::exec()
+{
+    double averedge;
+    for (int i = 0; i<_formedSignalLine->getWindowSize(); i++)
+    {
+        averedge = 0.0;
+        for(int j = 0; j<_formedSize;j++)
+        {
+//            printf("Koef[%d] = %f \n",j,KOFS[j]);
+//            printf("Point = %d \n", ((*(_alphaSignalLine->getLast()-(i+j)))));
+            averedge += KOFS[j] * ((*(_alphaSignalLine->getLast()-(i+j)))* 1.0);
+        }
+        *(_formedSignalLine->getLast()-i) = averedge ;
+//        sleep(2);
+    }
+}
+*/
+
+
 void FIR::setSize(int size) {
-    _size = size;
+    _windowSize = size;
+    _sourceSize = _source.size();
+    _filteredSize = _sourceSize - _windowSize;
 }
 
 void FIR::setCoeff() {

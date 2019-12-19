@@ -7,6 +7,7 @@
 #include "include/Generator/Generator.hpp"
 #include "include/AmpDetector/AmpDetector.hpp"
 #include "include/FloatingAverage/FloatingAverage.h"
+#include "include/FIR/FIR.h"
 
 using namespace std;
 
@@ -38,6 +39,7 @@ int main(int argc, char* argv[])
 {
     parseOptions(argc, argv);
     fstream floating1;
+    fstream firFile;
 
     GRAPH points;
     Generator generator(parameters);
@@ -46,7 +48,7 @@ int main(int argc, char* argv[])
 /*    for(auto i = 0;i<points.size();i++) {
         cout << "gen" << points[i].y << endl;
     }*/
-    auto floating = new FloatingAverage(points);
+    /*auto floating = new FloatingAverage(points);
     floating->setWindowSize(10);
     floating->exec();
     points = floating->getPoints();
@@ -56,6 +58,18 @@ int main(int argc, char* argv[])
         floating1 << point.y << endl;
     }
     floating1.close();
+*/
+    auto filter = new FIR(points);
+    filter->setSize(2);
+    filter->exec();
+    points = filter->getFilteredElements();
+    firFile.open("firfiltered.txt", ios::out);
+    for(auto const &point : points)
+    {
+        firFile << point.y << endl;
+    }
+    firFile.close();
+
 
     AmpDetector detector(points);
 

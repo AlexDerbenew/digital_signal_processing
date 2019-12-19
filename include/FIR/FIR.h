@@ -9,15 +9,19 @@
 
 class FIR {
 public:
-    FIR(GRAPH points);
+    FIR(GRAPH points, );
     void setCoeff();
     void setSize(int size);
     void exec();
-    GRAPH getFilteredElements() { return _filtered;}
+    GRAPH getFilteredElements() { return _source;}
 private:
+    GRAPH _source;
     GRAPH _filtered;
     double *coef;
-    int _size;
+    int _sourceSize;
+    int _filteredSize;
+    int _windowSize;
+    int _sampleRate;
 };
 
 #endif //DSP_KFILTER_H
