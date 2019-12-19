@@ -1,9 +1,8 @@
 #include <iostream>
 #include <fstream>
 
-#include "include/point.hpp"
 #include "include/graph.hpp"
-#include "cxxopts.hpp"
+#include "include/cxxopts.hpp"
 #include "include/Generator/FunctionParameters.hpp"
 #include "include/Generator/Generator.hpp"
 #include "include/AmpDetector/AmpDetector.hpp"
@@ -53,8 +52,8 @@ int main(int argc, char* argv[])
     points = floating->getPoints();
 
     floating1.open("floating.txt", ios::out);
-    for(auto i = 0;i<points.size();i++) {
-        floating1 << points[i].y << endl;
+    for(auto & point : points) {
+        floating1 << point.y << endl;
     }
     floating1.close();
 
